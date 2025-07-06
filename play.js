@@ -1,6 +1,6 @@
 // Initialize EmailJS
 (function() {
-    emailjs.init("ZKJrFdtrTk4pQYv1j"); // Replace with your EmailJS user ID
+    emailjs.init("ZKJrFdtrTk4pQYv1j"); // EmailJS user ID
 })();
 
 // Global variables
@@ -1175,8 +1175,7 @@ function setupEventListeners() {
         if (e.key === 'Enter') handleSearch();
     });
     
-    // Contact form
-    document.getElementById('contactForm').addEventListener('submit', handleContactForm);
+  
     
     // Logout
     document.getElementById('logoutBtn').addEventListener('click', logout);
@@ -1628,34 +1627,6 @@ function handleSearch() {
     }
 }
 
-function handleContactForm(e) {
-    e.preventDefault();
-    
-    const formData = {
-        name: document.getElementById('contactName').value,
-        email: document.getElementById('contactEmail').value,
-        subject: document.getElementById('contactSubject').value,
-        message: document.getElementById('contactMessage').value
-    };
-    
-    const templateParams = {
-        to_email: 'your-email@gmail.com', // Replace with your email
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        sent_time: new Date().toLocaleString()
-    };
-    
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_CONTACT_TEMPLATE_ID', templateParams)
-        .then(function(response) {
-            showMessage('Message sent successfully!', 'success');
-            document.getElementById('contactForm').reset();
-        })
-        .catch(function(error) {
-            showMessage('Failed to send message. Please try again.', 'error');
-        });
-}
 
 function logout() {
     localStorage.removeItem('currentUser');

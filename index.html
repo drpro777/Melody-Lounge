@@ -75,13 +75,14 @@
                         <input type="text" id="visitorName" placeholder="Enter Your Name" autocomplete="off">
                     </div>
                     <div class="photo-upload">
-                        <div class="upload-area" id="uploadArea">
-                            <i class="fas fa-camera"></i>
-                            <p>Upload Your Photo</p>
-                            <input type="file" id="visitorPhoto" accept="image/*">
-                        </div>
-                        <div class="photo-preview" id="photoPreview"></div>
-                    </div>
+    <div class="upload-area" id="uploadArea">
+        <i class="fas fa-camera"></i>
+        <p>Your Photo</p>
+        <input type="file" id="visitorPhoto" accept="image/*">
+    </div>
+    <div class="photo-preview" id="photoPreview"></div>
+</div>
+
                     <button id="loginBtn" class="login-btn">
                         <span>Login</span>
                         <i class="fas fa-sign-in-alt"></i>
@@ -144,7 +145,7 @@
                         <div class="online-status"></div>
                     </div>
                     <div class="profile-info">
-                        <h3>ᴍᴇʟᴏᴅʏ ʟᴏᴜɴɢᴇ</h3>
+                        <h3>ᴍᴜʜᴀᴍᴍᴀᴅ ᴀʟɪ</h3>
                         <p class="status-text">Online</p>
                     </div>
                 </div>
@@ -299,23 +300,24 @@
                         <h2>Get in Touch</h2>
                         <p class="contact-subtitle">Send me a message and I'll get back to you soon!</p>
                         <form id="contactForm" class="contact-form">
-                            <div class="form-group">
-                                <input type="text" id="contactName" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" id="contactEmail" placeholder="Your Email" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="contactSubject" placeholder="Subject" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea id="contactMessage" placeholder="Your Message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="submit-btn">
-                                <i class="fas fa-paper-plane"></i>
-                                Send Message
-                            </button>
-                        </form>
+    <div class="form-group">
+        <input type="text" id="contactName" placeholder="Your Name" required name="from_name">
+    </div>
+    <div class="form-group">
+        <input type="email" id="contactEmail" placeholder="Your Email" required name="from_email">
+    </div>
+    <div class="form-group">
+        <input type="text" id="contactSubject" placeholder="Subject" required name="subject">
+    </div>
+    <div class="form-group">
+        <textarea id="contactMessage" placeholder="Your Message" rows="5" required name="message"></textarea>
+    </div>
+    <button type="submit" class="submit-btn">
+        <i class="fas fa-paper-plane"></i>
+        Send Message
+    </button>
+</form>
+
                     </div>
                 </div>
             </section>
@@ -414,5 +416,40 @@
 
     <!-- Scripts -->
     <script src="play.js"></script>
+   <script type="text/javascript">
+(function () {
+    emailjs.init("ZKJrFdtrTk4pQYv1j"); // your public key
+})();
+
+// Wait for DOM to load
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contactForm");
+    const submitBtn = form.querySelector(".submit-btn");
+    const originalButtonText = submitBtn.innerHTML;
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault(); // prevent default form submission
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
+
+        // Send form using EmailJS
+        emailjs.sendForm("service_3t4t63f", "template_y345958", form)
+            .then(function (response) {
+                console.log("Message sent successfully!", response);
+                form.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalButtonText;
+                alert("Message sent successfully!");
+            }, function (error) {
+                console.error("EmailJS Error:", error);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalButtonText;
+                alert("Failed to send message. Please try again.");
+            });
+    });
+});
+</script>
+
 </body>
 </html>
