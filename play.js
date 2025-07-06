@@ -384,13 +384,13 @@ const musicData = {
     ],
     arijit: [
         {
-            title: "Tum Hi Ho",
+            title: "Lal Jora",
             artist: "Arijit Singh",
-            cover: "https://images.pexels.com/photos/167092/pexels-photo-167092.jpeg?auto=compress&cs=tinysrgb&w=300",
-            src: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
+            cover: "arjit singh/photos/1.jpeg",
+            src: "arjit singh/Lal Jora.mp3"
         },
         {
-            title: "Channa Mereya",
+            title: "Dhoka Dhari",
             artist: "Arijit Singh",
             cover: "https://images.pexels.com/photos/167092/pexels-photo-167092.jpeg?auto=compress&cs=tinysrgb&w=300",
             src: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav"
